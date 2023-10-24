@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000; // choose any available port number
+const port = 3000;
 
-app.use(express.json()); // enable JSON parsing for incoming requests
+app.use(express.json());
 
 // define a route to handle GET requests to /api/game
 app.get('/api/game', (req, res) => {
