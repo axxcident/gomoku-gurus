@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors())
 
 // define a route to handle GET requests to /api/game
 app.get('/api/game', (req, res) => {
