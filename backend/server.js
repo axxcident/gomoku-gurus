@@ -11,6 +11,9 @@ app.get('/api/game', (req, res) => {
   res.json(gameData);
 });
 
+
+// Antecknigar
+
 // define a route to handle POST requests to /api/game
 app.post('/api/game', (req, res) => {
   // update the game data in db.json
