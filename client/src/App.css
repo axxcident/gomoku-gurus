@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@600&family=Krona+One&display=swap');
 
+/* Använd dessa fonts med detta */
+/* font-family: 'Inika', serif;
+font-family: 'Inter', sans-serif;
+font-family: 'Krona One', sans-serif; */
+
 .GomokuGurus-logo {
   height: 10vmin;
   pointer-events: none;
