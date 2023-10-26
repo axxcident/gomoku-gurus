@@ -14,7 +14,7 @@ app.use(cors())
 //   res.send({status:"succes1s"});
 // })
 
-app.use('/api/gomoku', require('./gomoku_routes'))
+app.use('/api', require('./gomoku_routes'))
 
 // // define a route to handle GET requests to /api/game
 // app.get('/api/game', (req, res) => {
@@ -31,5 +31,5 @@ app.use('/api/gomoku', require('./gomoku_routes'))
 // });
 
 app.listen(port, () => {
-  console.log(`http server listening on port http://localhost:${port}/api/gomoku/play`);
+  console.log(`http server listening on port http://localhost:${port}/api/play`);
 });
