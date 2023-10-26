@@ -1,7 +1,7 @@
 // const axios = require('axios').default;
 import axios from 'axios';
 // Set the base URL for Axios
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://localhost:3001';
 
 const getGameData = async () => {
   try {
