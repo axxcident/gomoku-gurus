@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Board from './components/Board';
+// import Board from './components/Board';
+import Testboard from './components/Testboard';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
       </header>
-      <Board className="board-container" />
+      <Testboard className="board-container" />
     </div>
   );
 }
