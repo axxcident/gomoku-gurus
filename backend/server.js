@@ -31,5 +31,5 @@ app.use('/api', require('./gomoku_routes'))
 // });
 
 app.listen(port, () => {
-  console.log(`http server listening on port http://localhost:${port}/api/play`);
+  console.log(`http backend server listening on port http://localhost:${port}/api/create_game`);
 });

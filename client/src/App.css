@@ -1,16 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@600&family=Krona+One&display=swap');
 
-.App {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* Använd dessa fonts med detta */
+/* font-family: 'Inika', serif;
+font-family: 'Inter', sans-serif;
+font-family: 'Krona One', sans-serif; */
 
 .GomokuGurus-logo {
   height: 10vmin;
@@ -24,11 +17,7 @@
   align-items: center;
 }
 
-
 .board {
-  /* width: 30vw;
-  height: 30vh; */
-  /* border: white 2px solid; */
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(15, 1fr);
@@ -40,4 +29,51 @@
   width: 30px;
   height: 30px;
   border: white 1px solid;
+}
+
+.navbar {
+  height: 121px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 30px 0;
+}
+
+.navbar .navigation-links {
+  display: flex;
+  align-items: flex-end;
+  list-style: none;
+}
+
+#dropdown {
+  cursor: pointer;
+}
+
+.navbar .navigation-links li button {
+  border: none;
+  box-shadow: none;
+  background-color: #1A3944;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar .navigation-links li * {
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: 'Krona One', sans-serif;
+}
+
+.navbar .navigation-links li svg {
+  padding-top: 5px;
+  margin-left: 5px;
+}
+
+.navbar .navigation-links li {
+  margin: 0 20px 20px;
+}
+
+.navbar .navigation-links li a {
+  color: white;
+  background-color: #1A3944;
+  text-decoration: none;
 }
