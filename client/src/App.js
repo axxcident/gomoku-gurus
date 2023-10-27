@@ -1,5 +1,6 @@
 import './App.css';
 import Testboard from './components/Testboard';
+import Board from './components/Board';
 import Navbar from './components/Navbar';
 // import { Route, Routes } from "react-router-dom";
 
@@ -14,6 +15,7 @@ function App() {
       </Routes> */}
       <Navbar />
       <Testboard className="board-container" />
+      <Board />
     </>
   );
 }
