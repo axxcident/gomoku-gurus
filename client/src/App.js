@@ -1,26 +1,29 @@
 import React from 'react'
 import Section from './components/Section.jsx'
-
-//import logo from './logo.svg';
 import './App.css';
-//import Board from './components/Board';
+import Testboard from './components/Testboard';
+import Board from './components/Board';
+import Navbar from './components/Navbar';
+// import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
+    <>
+      {/* <Routes>
+        <Route path='/' element={ <Home /> } />
+        <Route path='/about' element={ <About /> } />
+        <Route path='/gameplay' element={ <Gameplay /> } />
+        <Route path='/contact' element={ <Contact /> } />
+      </Routes> */}
+      <Navbar />
     <div className="App">
-
-<main >
+      <main>
        <Section className="main-container" />
       </main>
-    {/*  <header>
-        <img src={logo} className="GomokuGurus-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-      <Board className="board-container" />*/}
-    
     </div>
+      <Testboard className="board-container" />
+      <Board />
+    </>
   );
 }
 
