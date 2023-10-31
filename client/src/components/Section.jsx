@@ -6,7 +6,7 @@ return (
 <div className="main-content">
 <div className="hero-text">
 <h3>
-Omuku –  <br/>
+Gomuku –  <br/>
 Där Strategi Möter Spänning och Skicklighet!"
 </h3>
 <h5>
