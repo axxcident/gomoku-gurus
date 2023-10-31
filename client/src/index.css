@@ -8,4 +8,8 @@ body {
   background-color: #1A3944;
   min-height: 100vh;
   color: white;
+  background-image: url('../public/abstract-gamer-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
