@@ -126,36 +126,36 @@ font-family: 'Krona One', sans-serif; */
   text-decoration: none;
 }
 
-
 /* Home Section komponent styling */
 .start-button{
- color: white;
- display: inline-block;
- background-color: #000000;
- height: 65px;
- width: 200px;
- font-size: larger;
- border: 1px solid #00E0FF;
- border-radius: 7px;
- box-shadow: #00E0FF 2px 2px;
- font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
- cursor: pointer;
- background: linear-gradient(90deg, transparent 50%, #000 50%);
- background-size: 200% 100%;
- background-position: -100%;
- transition: background-position 0.5s;
-
+  color: white;
+  display: inline-block;
+  background-color: #000000;
+  height: 65px;
+  width: 200px;
+  font-size: larger;
+  border: 1px solid #00E0FF;
+  border-radius: 7px;
+  box-shadow: #00E0FF 2px 2px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  cursor: pointer;
+  background: linear-gradient(90deg, transparent 50%, #000 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  transition: background-position 0.5s;
 }
+
 .start-button:hover{
   background-position: 100%;
   background: linear-gradient(190deg, transparent 50%, #00E0FF 125%);
 }
+
 .main-content{
- font-size: calc(10px + 2vmin);
- display: flex;
- flex-direction: column;
- row-gap: 110px;
- align-items: center;
+  font-size: calc(10px + 2vmin);
+  display: flex;
+  flex-direction: column;
+  row-gap: 110px;
+  align-items: center;
 }
 
 .hero-text{
@@ -175,5 +175,5 @@ font-family: 'Krona One', sans-serif; */
   text-align: center;
   font-weight: lighter;
   font-size:larger;
-font-variant-caps:unicase;
+  font-variant-caps:unicase;
 }
