@@ -1,29 +1,36 @@
-import logo from './logo.svg';
+
+import React, { useState } from 'react';
+import Home from './pages/Home.jsx'
 import './App.css';
+// import Testboard from './components/Testboard';
 // import Board from './components/Board';
-import Testboard from './components/Testboard';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import About from './pages/About.jsx';
+import Navbar from './components/Navbar';
+import Modal from './components/LogInModal';
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <>
-        <Routes>
-          <Route path="/about" element={<About />} />
-        </Routes>
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => {
+      setIsModalOpen(true);
+    }
+    const closeModal = () => {
+      setIsModalOpen(false);
+    }
 
-        <div className="App">
-          <header>
-            <img src={logo} className="GomokuGurus-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-          </header>
-          <Testboard className="board-container" />
-        </div>
-      </>
-    </BrowserRouter>
+  return (
+    <>
+      <Navbar openModal={openModal} />
+      <Routes>
+        <Route path='/' element={ <Home /> } />
+        {/* <Route path='/about' element={ <About /> } />
+        <Route path='/gameplay' element={ <Gameplay /> } />
+        <Route path='/contact' element={ <Contact /> } />  */}
+      </Routes>
+      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+       {/* <Section className="main-container" /> */}
+      {/* <Testboard className="board-container" />
+      <Board /> */}
+    </>
   );
 }
 
