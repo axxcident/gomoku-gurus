@@ -1,34 +1,35 @@
+
 import React, { useState } from 'react';
+import Home from './pages/Home.jsx'
 import './App.css';
-import Testboard from './components/Testboard';
-import Board from './components/Board';
+// import Testboard from './components/Testboard';
+// import Board from './components/Board';
 import Navbar from './components/Navbar';
 import Modal from './components/LogInModal';
-// import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+function App() { 
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const openModal = () => {
       setIsModalOpen(true);
     }
-
     const closeModal = () => {
       setIsModalOpen(false);
     }
 
   return (
     <>
-      {/* <Routes>
-        <Route path='/' element={ <Home /> } />
-        <Route path='/about' element={ <About /> } />
-        <Route path='/gameplay' element={ <Gameplay /> } />
-        <Route path='/contact' element={ <Contact /> } />
-      </Routes> */}
       <Navbar openModal={openModal} />
+      <Routes>
+        <Route path='/' element={ <Home /> } />
+        {/* <Route path='/about' element={ <About /> } />
+        <Route path='/gameplay' element={ <Gameplay /> } />
+        <Route path='/contact' element={ <Contact /> } />  */}
+      </Routes>
       <Modal isOpen={isModalOpen} closeModal={closeModal} />
-      <Testboard className="board-container" />
-      <Board />
+       {/* <Section className="main-container" /> */}
+      {/* <Testboard className="board-container" />
+      <Board /> */}
     </>
   );
 }

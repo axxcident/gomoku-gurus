@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Inter:wght@600&family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
 
 /* Använd dessa fonts med detta */
 /* font-family: 'Inika', serif;
@@ -6,11 +7,11 @@ font-family: 'Inter', sans-serif;
 font-family: 'Krona One', sans-serif; */
 
 .GomokuGurus-logo {
-  height: 10vmin;
+  height: 6vmin;
   pointer-events: none;
 }
 
-/* board */
+/* Board Styling */
 .board-container {
   display: flex;
   margin: 0 auto;
@@ -77,7 +78,9 @@ font-family: 'Krona One', sans-serif; */
   z-index: 1;
 }
 
+/* Navbar */
 .navbar {
+  background-color: #1A3944;
   height: 121px;
   display: flex;
   flex-direction: row;
@@ -180,3 +183,55 @@ font-family: 'Krona One', sans-serif; */
     color: #ffffff;
     cursor: pointer;
   }
+
+/* Home Section komponent styling */
+.start-button{
+  color: white;
+  display: inline-block;
+  background-color: #000000;
+  height: 65px;
+  width: 200px;
+  font-size: larger;
+  border: 1px solid #00E0FF;
+  border-radius: 7px;
+  box-shadow: #00E0FF 2px 2px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  cursor: pointer;
+  background: linear-gradient(90deg, transparent 50%, #000 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  transition: background-position 0.5s;
+}
+
+.start-button:hover{
+  background-position: 100%;
+  background: linear-gradient(190deg, transparent 50%, #00E0FF 125%);
+}
+
+.main-content{
+  font-size: calc(10px + 2vmin);
+  display: flex;
+  flex-direction: column;
+  row-gap: 110px;
+  align-items: center;
+}
+
+.hero-text{
+  display: flex;
+  flex-direction: column;
+  font-size:500;
+  row-gap: 10px;
+  margin-top: 12%;
+}
+
+.hero-text h3{
+  font-family:'Carter One';
+  font-weight: lighter;
+}
+
+.hero-text h5 {
+  text-align: center;
+  font-weight: lighter;
+  font-size:larger;
+  font-variant-caps:unicase;
+}
