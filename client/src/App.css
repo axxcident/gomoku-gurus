@@ -139,6 +139,7 @@ font-family: 'Krona One', sans-serif; */
 .start-button{
   display: inline-block;
   background-color: #000000;
+  color: #fff;
   height: 65px;
   width: 200px;
  font-size: larger;
@@ -151,6 +152,7 @@ font-family: 'Krona One', sans-serif; */
  background-size: 200% 100%;
  background-position: -100%;
    transition: background-position 0.5s;
+   
 
 }
 .start-button:hover{
