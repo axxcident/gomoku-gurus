@@ -51,6 +51,7 @@ font-family: 'Krona One', sans-serif; */
   border: solid black 1px;
 }
 
+/* navbar */
 .invisible-board {
   display: flex;
   margin: 0 auto;
@@ -125,6 +126,63 @@ font-family: 'Krona One', sans-serif; */
   background-color: #1A3944;
   text-decoration: none;
 }
+
+/* log in modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #293436;
+    padding: 20px;
+    border: 10px solid #293436;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 101;
+    background: linear-gradient(
+        to bottom right,
+        #ffffff,
+        #34495E)
+  }
+
+  .close-modal {
+    position: relative;
+    top: -1rem;
+    left: 16.5rem;
+    border: transparent;
+    background-color: transparent;
+    font-size: x-large;
+    cursor: pointer;
+  }
+
+  .input {
+    border-radius: 5px;
+    height: 2rem;
+    width: 17.3rem;
+    margin-top: 1rem;
+  }
+
+  .cont-btn {
+    margin-top: 2rem;
+    font-size: x-large;
+    width: 17.3rem;
+    height: 3rem;
+    background-color: #212529;
+    color: #ffffff;
+    cursor: pointer;
+  }
 
 /* Home Section komponent styling */
 .start-button{

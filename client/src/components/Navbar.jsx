@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({ openModal }) => {
 
   const testclick = () => {
     console.log('The first li element was clicked!');
@@ -26,6 +26,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/contact">Kontakta oss</Link>
+          </li>
+          <li>
+        <button onClick={openModal}>Logga in</button>
           </li>
         </ul>
     </nav>
