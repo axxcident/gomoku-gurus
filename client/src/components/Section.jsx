@@ -1,4 +1,5 @@
 import React from "react";
+import Playbutton from "../components/PlayButton"
 
 const Section = () => {
 return (
@@ -13,9 +14,11 @@ return (
         i Det Perfekta Omoku-Äventyret!
         </h5>
       </div>
-      <div>
+      <Playbutton/>
+      
+       {/* <div>
         <input className="start-button"  type="button" value="Börja spela" />
-      </div>
+      </div> */}
     </div>
 )}
 

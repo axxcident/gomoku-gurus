@@ -162,16 +162,18 @@ font-family: 'Krona One', sans-serif; */
   display: flex;
   flex-direction: column;
   font-size:500;
-  row-gap: 20px;
+  row-gap: 10px;
   margin-top: 12%;
 }
 
 .hero-text h3{
   font-family:'Carter One';
+  font-weight: lighter;
 }
 
 .hero-text h5 {
   text-align: center;
   font-weight: lighter;
-  font-size:x-large;
+  font-size:larger;
+font-variant-caps:unicase;
 }
