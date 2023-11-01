@@ -51,7 +51,6 @@ font-family: 'Krona One', sans-serif; */
   border: solid black 1px;
 }
 
-/* navbar */
 .invisible-board {
   display: flex;
   margin: 0 auto;
@@ -270,3 +269,84 @@ font-family: 'Krona One', sans-serif; */
  .playbutton-about {
     text-align: right;
  }
+
+/* kontakta oss page */
+.text-contact {
+    text-align: center;
+    font-family: 'Krona One', sans-serif;
+    margin: 3rem 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #04151B;
+    border-right: 1px solid #00E0FF;
+    border-bottom: 1px solid #00E0FF;
+    border-radius: 10px;
+}
+
+.input-form {
+    background-color: transparent;
+    border: 1px solid #00E0FF;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    margin-bottom: 1rem;
+    padding: .5rem .25rem;
+    color: #ffffff;
+}
+
+.form-btn {
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    background-color: #00E0FF;
+    margin-top: 2rem;
+    cursor: pointer;
+    height: 3rem;
+}
+
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #00E0FF;
+    border-radius: 5px;
+    padding: 70px;
+    box-shadow: 0px 2px 5px #00e0ff;
+    text-align: center;
+    background: linear-gradient(
+        to bottom right,
+        #ffffff,
+        #34495E)
+  }
+
+  .popup p {
+    margin: 0;
+    color: #000;
+    font-family: 'Krona One', sans-serif;
+    font-size: larger;
+  }
+
+/*   .popup button {
+    background-color: #00E0FF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+
+/*   .popup button:hover, .popup button:focus {
+    background-color: #0090CC;
+  } */
+
+.form-submitted {
+    display: none;
+}
