@@ -1,4 +1,3 @@
-// const axios = require('axios').default;
 import axios from 'axios';
 // Set the base URL for Axios
 axios.defaults.baseURL = 'http://localhost:3001';
@@ -11,5 +10,24 @@ const getGameData = async () => {
     console.error(error);
   }
 };
-export { getGameData };
-// module.exports = { getGameData };
+
+const addPlayer1 = async (playerName) => {
+  try {
+    const response = await axios.post('/api/add_player1', { playerName });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const addPlayer2 = async (playerName) => {
+  try {
+    const response = await axios.post('/api/add_player2', { playerName });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+export { getGameData, addPlayer1, addPlayer2 };
