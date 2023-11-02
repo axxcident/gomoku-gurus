@@ -167,14 +167,15 @@ font-family: 'Krona One', sans-serif; */
     cursor: pointer;
   }
 
-  .input {
+  .modal-input {
+    padding: 4px;
     border-radius: 5px;
     height: 2rem;
     width: 17.3rem;
     margin-top: 1rem;
   }
 
-  .cont-btn {
+  .modal-cont-btn {
     margin-top: 2rem;
     font-size: x-large;
     width: 17.3rem;
