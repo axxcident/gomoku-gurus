@@ -4,10 +4,10 @@ import PlayButton from "../components/PlayButton";
 
 function App () {
     return (
-        <div class='about-page'>
-           <button class='arrow-button'>&#129136;</button>
-           <div class='about-text'>
-            <p class='title-about'>
+        <div className='about-page'>
+           <button className='arrow-button'>&#129136;</button>
+           <div className='about-text'>
+            <p className='title-about'>
                 Spelets ursprung
             </p>
             <p>
@@ -20,7 +20,7 @@ function App () {
                 vara adopterat från kinesiska k'i pan (qí pán) "schackbräde".
             </p>
            </div>
-           <div class='playbutton-about'>
+           <div className='playbutton-about'>
            <PlayButton></PlayButton>
            </div>
         </div>

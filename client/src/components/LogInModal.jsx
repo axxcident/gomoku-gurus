@@ -8,9 +8,9 @@ const Modal = ({ isOpen, closeModal }) => {
         <div className="modal-content">
         <button className="close-modal" onClick={closeModal}> ✖ </button>
           <h2>Mata in ett användarnamn</h2>
-          <input className="input" type="text" />
+          <input className="modal-input" type="text" />
           <br></br>
-        <button className="cont-btn">Fortsätt</button>
+        <button className="modal-cont-btn">Fortsätt</button>
         </div>
       </div>
     );
