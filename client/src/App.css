@@ -272,8 +272,6 @@ font-family: 'Krona One', sans-serif; */
     text-align: right;
  }
 
-
-
  .footer {
     background-color: #000;
     margin-top: auto;
@@ -285,6 +283,4 @@ font-family: 'Krona One', sans-serif; */
     align-items: center;
     position: fixed;
     bottom: 0;
-
-
  }
