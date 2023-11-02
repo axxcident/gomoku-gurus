@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const gameData = require('./db.json');
 
-router.get('/create_game', (req, res) =>{
+router.get('/get_game', (req, res) =>{
     // res.json({status: "Game created"});
     res.json(gameData);
 });
