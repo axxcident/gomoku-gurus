@@ -21,7 +21,7 @@ const Board = () => {
   return (
     <>
       <div className="board-container">
-        <h5>Board</h5>
+        {/*<h5>Board</h5>*/}
         <div className='board'>
           {cells.map((cell, i) => (
             <button key={i} className='cell'></button>
