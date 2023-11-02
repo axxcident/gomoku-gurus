@@ -28,8 +28,8 @@ function App() {
         <Route path='/' element={ <Home /> } />
         <Route path='/about' element={ <About /> } />
         <Route path='/spelSida' element={<SpelSida/>} />
-        {/* <Route path='/gameplay' element={ <Gameplay /> } />
-        <Route path='/contact' element={ <Contact /> } />  */}
+        {/* <Route path='/gameplay' element={ <Gameplay /> } />*/}
+        <Route path='/contact' element={ <Contact /> } />
       </Routes>
       <Modal isOpen={isModalOpen} closeModal={closeModal} />
        {/* <Section className="main-container" /> */}
