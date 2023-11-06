@@ -1,47 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+const { getGameData } = require('../api/Gamedata');
 
 const Board = () => {
-  const [cells, setCells] = useState(Array(15 * 15).fill(null));
-  const [invisibleCells, setInvisibleCells] = useState(Array(16 * 16).fill(null));
+
+  const [gameBoardData, setGameBoardData] = useState(null);
+
+  const visibleCells = [];
+  for (let i = 0; i < 15 * 15; i++) {
+    visibleCells.push(i);
+  }
+  // const [invisibleCells, setInvisibleCells] = useState(Array(16 * 16).fill(null));
   const [isBlack, setIsBlack] = useState(true);
 
-  const handleClick = (i) => {
-    const newCells = [...cells];
-    newCells[i] = isBlack ? 'b-circle' : 'w-circle';
-    setCells(newCells);
-  };
+  useEffect(() => {
+    getGameData()
+      .then(data => {
+        // console.log(data["2ca69660-fa1b-45be-b53d-29ea6ca839f9"]); // Log the data object
+        setGameBoardData(data["2ca69660-fa1b-45be-b53d-29ea6ca839f9"]);
+        // console.log(gameBoardData)
+      })
+      .catch(error => console.error(error));
+  }, []);
 
-  const handleInvisibleClick = (i) => {
-    const newInvisibleCells = [...invisibleCells];
-    newInvisibleCells[i] = isBlack ? 'b-circle' : 'w-circle';
-    setInvisibleCells(newInvisibleCells);
+  const handleInvisibleClick = (rowIndex, colIndex) => {
+    console.log(`invisible click is row: ${rowIndex} and column: ${colIndex}`)
+    gameBoardData.board.tiles[rowIndex][colIndex] = isBlack ? 1 : 2;
+    // const newInvisibleCells = [...invisibleCells];
+    // newInvisibleCells[i] = isBlack ? 'b-circle' : 'w-circle';
+    // setInvisibleCells(newInvisibleCells);
     setIsBlack(!isBlack);
   };
 
   return (
     <>
       <div className="board-container">
-        {/*<h5>Board</h5>*/}
         <div className='board'>
-          {cells.map((cell, i) => (
-            <button key={i} className='cell'></button>
+          {visibleCells.map((cell) => (
+            <button key={cell} className='cell'></button>
           ))}
         </div>
-        <InvisibleBoard onClick={handleInvisibleClick} invisibleCells={invisibleCells} />
+        {/* invisibleCells={invisibleCells} */}
+        {/* <p> {JSON.stringify(gameBoardData["2ca69660-fa1b-45be-b53d-29ea6ca839f9"], null, 2)} </p> */}
+        <InvisibleBoard onClick={handleInvisibleClick} gameBoardData={gameBoardData} />
       </div>
     </>
   );
 };
 
-const InvisibleBoard = ({ onClick, invisibleCells }) => {
+const InvisibleBoard = ({ onClick, gameBoardData }) => {
   return (
     <div className='invisible-board'>
       <div className='i-board'>
-        {invisibleCells.map((cell, i) => (
-          <button key={i} className='invisible-cell' onClick={() => onClick(i)}>
-            {cell === 'b-circle' ? <div className='b-circle'></div> : null}
-            {cell === 'w-circle' ? <div className='w-circle'></div> : null}
-          </button>
+      {gameBoardData.board.tiles.map((row, rowIndex) => (
+          <div key={rowIndex} className='row'>
+            {row.map((cell, colIndex) => (
+              <button key={colIndex} className='invisible-cell' onClick={() => onClick(rowIndex, colIndex)}>
+                {cell === 1 ? <div className='b-circle'></div> : null}
+                {cell === 2 ? <div className='w-circle'></div> : null}
+              </button>
+            ))}
+          </div>
         ))}
       </div>
     </div>

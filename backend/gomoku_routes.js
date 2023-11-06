@@ -26,7 +26,7 @@ router.post('/create_new_board', (req, res) => {
         minInRow: 5,
         cols: 16,
         rows: 16,
-        tiles: Array(16).fill(Array(16).fill(0)), // Fill the board with zeros
+        tiles: Array(17).fill(Array(17).fill(0)), // Fill the board with zeros
       },
     };
 
