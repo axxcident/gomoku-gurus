@@ -99,6 +99,30 @@ router.post('/add_player2', (req, res) =>{
     }
 });
 
+// Ändra tillståndet för en specifik bräda
+router.post('/change_board_state/:boardId', (req, res) => {
+    const { boardId } = req.params;
+    const { newState } = req.body;
+
+    if (gameData[boardId] && newState !== undefined && isString(newState)) {
+      gameData[boardId].state = newState;
+      const updatedJson = JSON.stringify(gameData);
+
+      fs.writeFile('./db.json', updatedJson, (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ status: 'Error writing to file' });
+        } else {
+          console.log('Board state changed and written to file');
+          res.json({ status: 'Board state changed' });
+        }
+      });
+    } else {
+      res.status(400).json({ status: 'Invalid state or board not found' });
+    }
+  });
+
+
 
 router.get('/play', (req, res) =>{
     res.json({status: "Playing game"});
