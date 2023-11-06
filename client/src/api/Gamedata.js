@@ -39,5 +39,16 @@ const addPlayer2 = async (playerName) => {
   }
 };
 
+const clickTile = async(rowId, colId, playerName, isPlayer1orPlayer2) => {
+  const url = new URL(window.location.href);
+  const boardId = url.pathname.split('/').pop();
+  try {
+    const response = await axios.post(`/api/click_tile/${boardId}`, { rowId, colId, playerName, isPlayer1orPlayer2 });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export { getGameData, addPlayer1, addPlayer2, createNewGameBoard };
+
+export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile };
