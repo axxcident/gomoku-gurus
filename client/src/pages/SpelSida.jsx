@@ -14,7 +14,7 @@ function SpelSida() {
   }
  
   return (
-    <div className='div' >
+    <div className='board-wrapper' >
 <div className='board-con' >
 <div className='board-top'>
    <div>
