@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Navbar = ({ openModal }) => {
+    
 
     const testclick = () => {
         const dropdownContent = document.getElementById('dropdownContent');
