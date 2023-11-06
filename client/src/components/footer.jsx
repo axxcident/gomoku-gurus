@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='footer'>Copyright © 2023 Omuku All Rights Reserved</div>
+    <div className='footer'> <p>Copyright © 2023 Omuku All Rights Reserved </p></div>
   )
 }
 
