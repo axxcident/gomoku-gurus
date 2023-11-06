@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-const { getGameData } = require('../api/Gamedata');
+const { getGameData, createNewGameBoard } = require('../api/Gamedata');
 // import React, {useState, useEffect} from 'react';
 
 const Testboard = () => {
@@ -18,8 +18,13 @@ const Testboard = () => {
   return (
     <div className='board-container'>
       <h5>Testboard</h5>
+      <button onClick={() => {
+        createNewGameBoard();
+        window.location.reload();
+      }}
+        >create new board</button>
       {gameData ? (
-        <p>{JSON.stringify(gameData, null)}</p>
+        <p>{JSON.stringify(Object.keys(gameData), null)}</p>
         // <pre>{JSON.stringify(gameData.name, null, 2)}</pre>
       ) : (
         <p>Loading game data...</p>

@@ -1,21 +1,24 @@
-
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
+import SpelSida from './pages/SpelSida.jsx';
+import Contact from './pages/Contact.jsx'
+
 import './App.css';
 // import Testboard from './components/Testboard';
 // import Board from './components/Board';
-import Navbar from './components/Navbar';
-import Modal from './components/LogInModal';
-import { Route, Routes } from "react-router-dom";
+import Navbar from './components/Navbar'
+import Modal from './components/LogInModal'
+import Footer from './components/footer.jsx'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const openModal = () => {
-      setIsModalOpen(true);
+        setIsModalOpen(true)
     }
     const closeModal = () => {
-      setIsModalOpen(false);
+        setIsModalOpen(false)
     }
 
   return (
@@ -24,15 +27,17 @@ function App() {
       <Routes>
         <Route path='/' element={ <Home /> } />
         <Route path='/about' element={ <About /> } />
-        {/* <Route path='/gameplay' element={ <Gameplay /> } />
-        <Route path='/contact' element={ <Contact /> } />  */}
+        <Route path='/spelSida' element={<SpelSida/>} />
+        <Route path='/contact' element={ <Contact /> } />
+        {/* <Route path='/gameplay' element={ <Gameplay /> } /> */}
       </Routes>
       <Modal isOpen={isModalOpen} closeModal={closeModal} />
        {/* <Section className="main-container" /> */}
       {/* <Testboard className="board-container" />
       <Board /> */}
-    </>
-  );
+            <Footer />
+        </>
+    )
 }
 
-export default App;
+export default App
