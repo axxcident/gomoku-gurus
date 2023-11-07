@@ -11,6 +11,19 @@ const getGameData = async () => {
     console.error(error);
   }
 };
+// Funktion som fetchar ett specifik bräda med dess id
+const getGameBoard = async (boardId) => {
+  try {
+    const response = await axios.get(`/api/get_board/${boardId}`);
+   
+    return response.data;
+   
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 
 const createNewGameBoard = async () => {
   try {
@@ -20,6 +33,7 @@ const createNewGameBoard = async () => {
     console.error(error);
   }
 }
+
 
 const addPlayer1 = async (playerName) => {
   try {
@@ -38,6 +52,17 @@ const addPlayer2 = async (playerName) => {
     console.error(error);
   }
 };
+ 
+
+
+const changeBoardState = async (boardId, newState) => {
+    try {
+      const response = await axios.post(`/api/change_board_state/${boardId}`, { newState });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 const clickTile = async(rowId, colId, playerName, isPlayer1orPlayer2) => {
   const url = new URL(window.location.href);
@@ -51,4 +76,5 @@ const clickTile = async(rowId, colId, playerName, isPlayer1orPlayer2) => {
 };
 
 
-export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile };
+export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile, getGameBoard, changeBoardState };
+

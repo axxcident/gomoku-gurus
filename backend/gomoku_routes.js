@@ -45,8 +45,19 @@ router.post('/create_new_board', (req, res) => {
         console.log('New board created and written to file');
         res.json({ status: 'New board created', boardId });
       }
-    });
   });
+});
+
+// Hämta ett specifik bräda med hjälp av bräda id, boardId
+router.get('/get_board/:boardId', (req, res) => {
+  const { boardId } = req.params;
+  if (gameData[boardId]) {
+    res.json(gameData[boardId]);
+    console.log('itsworking')
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
 
 // Kolla om det är en sträng
 function isString(value) {
@@ -128,6 +139,30 @@ router.post('/click_tile/:boardId', (req, res) =>{
     res.status(400).json({ status: "something went wrong" });
   }
 });
+
+// Ändra tillståndet för en specifik bräda
+router.post('/change_board_state/:boardId', (req, res) => {
+    const { boardId } = req.params;
+    const { newState } = req.body;
+
+    if (gameData[boardId] && newState !== undefined && isString(newState)) {
+      gameData[boardId].state = newState;
+      const updatedJson = JSON.stringify(gameData);
+
+      fs.writeFile('./db.json', updatedJson, (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ status: 'Error writing to file' });
+        } else {
+          console.log('Board state changed and written to file');
+          res.json({ status: 'Board state changed' });
+        }
+      });
+    } else {
+      res.status(400).json({ status: 'Invalid state or board not found' });
+    }
+  });
+
 
 
 router.get('/play', (req, res) =>{
