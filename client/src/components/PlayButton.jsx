@@ -1,10 +1,15 @@
 import React, {useState} from 'react'
-import { Link, useNavigate  } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import {createNewGameBoard} from '../api/Gamedata';
+const { v4: uuidv4 } = require('uuid');
 
 function PlayButton() {
   const navigate = useNavigate();
   const [boardId, setBoardId] = useState(null);
+  const playerNamelocal = localStorage.getItem('playerName');
+  const [playerName, setplayerName] = useState(null);
+  if(!playerName){
+  }
 
   const createGame = async () => {
     try {
@@ -16,17 +21,32 @@ function PlayButton() {
     }
   }
 
-  // const boardId = '2ca69660-fa1b-45be-b53d-29ea6ca839f9';
+  const createProfile = async () => {
+    const findProfile = localStorage.getItem('playerName');
+    if (findProfile) {
+      setplayerName(findProfile);
+    } else {
+      const profile = prompt('Ange ditt namn/alias');
+      if (profile) {
+        const uniqueId = uuidv4();
+        const playerName = {
+          id: uniqueId,
+          playerName: profile,
+        };
+      // Spara i localStorage
+      localStorage.setItem('playerName', JSON.stringify(playerName));
+      setplayerName(profile);
+      }
+    }
+  }
 
   return (
     <>
     <div>
-      {boardId ? (
-          <Link to={`/spelSida/${boardId}`}>
-            <button className='start-button'>Börja spela</button>
-          </Link>
+      {playerNamelocal ? (
+        <button onClick={createGame} className='start-button'>Skapa nytt spel</button>
         ) : (
-          <button onClick={createGame} className='start-button'>Skapa nytt spel</button>
+          <button className='start-button' onClick={createProfile} >Skapa profil</button>
         )}
     </div>
     </>

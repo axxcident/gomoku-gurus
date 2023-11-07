@@ -120,7 +120,7 @@ router.post('/click_tile/:boardId', (req, res) =>{
   const { isPlayer1orPlayer2 } = req.body;
   const { boardId } = req.params;
 
-  if(gameData[boardId] && !isNaN(isPlayer1orPlayer2) && rowId !== undefined && colId !== undefined && !isNaN(rowId) && !isNaN(colId) && isString(playerName)) {
+  if(gameData[boardId] && !isNaN(isPlayer1orPlayer2) && rowId !== undefined && colId !== undefined && !isNaN(rowId) && !isNaN(colId) && typeof playerName === 'string') {
 
     gameData[boardId].board.tiles[rowId][colId] = isPlayer1orPlayer2;
     const updatedJson = JSON.stringify(gameData);
@@ -130,8 +130,8 @@ router.post('/click_tile/:boardId', (req, res) =>{
           console.error(err);
           res.status(500).json({ status: "Error writing to file" });
         } else {
-          console.log(`Data written to file player ${isPlayer1orPlayer2} clicked tile ${rowId} ${colId}`);
-          res.json({ status: `Tile changed: player ${isPlayer1orPlayer2} clicked row tile: ${rowId} & column tile: ${colId}` });
+          console.log(`Data written to file. Player named ${playerName} (player: ${isPlayer1orPlayer2}) clicked tile ${rowId} & ${colId}`);
+          res.json({ status: `Tile changed: Player named ${playerName} (player: ${isPlayer1orPlayer2}) clicked tile ${rowId} & ${colId}`});
         }
     });
   }

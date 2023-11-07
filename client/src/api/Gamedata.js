@@ -64,10 +64,11 @@ const changeBoardState = async (boardId, newState) => {
     }
   };
 
-const clickTile = async(rowId, colId, playerName, isPlayer1orPlayer2) => {
+const clickTile = async(boardId, rowId, colId, playerName, isPlayer1orPlayer2) => {
   // const url = new URL(window.location.href);
   // const boardId = url.pathname.split('/').pop();
-  const boardId = "2ca69660-fa1b-45be-b53d-29ea6ca839f9";
+  // const boardId = "2ca69660-fa1b-45be-b53d-29ea6ca839f9";
+  console.log("From gameData: ", boardId, rowId, colId, playerName, isPlayer1orPlayer2);
   try {
     const response = await axios.post(`/api/click_tile/${boardId}`, { rowId, colId, playerName, isPlayer1orPlayer2 });
     return response.data;
