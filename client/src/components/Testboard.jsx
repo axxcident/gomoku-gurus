@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 const { getGameData, createNewGameBoard } = require('../api/Gamedata');
-// import React, {useState, useEffect} from 'react';
 
 const Testboard = () => {
   const [gameData, setGameData] = useState(null);
