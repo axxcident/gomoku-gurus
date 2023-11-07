@@ -55,5 +55,14 @@ const addPlayer2 = async (playerName) => {
  
 
 
+const changeBoardState = async (boardId, newState) => {
+    try {
+      const response = await axios.post(`/api/change_board_state/${boardId}`, { newState });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, getGameBoard  };
+export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, getGameBoard, changeBoardState  };
+
