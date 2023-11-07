@@ -35,7 +35,19 @@ router.post('/create_new_board', (req, res) => {
 
     // Convert the updated object back to JSON
     const updatedJson = JSON.stringify(gameData);
-    
+
+    // Write the updated JSON to the file
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('New board created and written to file');
+        res.json({ status: 'New board created', boardId });
+      }
+  });
+});
+
 // Hämta ett specifik bräda med hjälp av bräda id, boardId
 router.get('/get_board/:boardId', (req, res) => {
   const { boardId } = req.params;
@@ -46,17 +58,6 @@ router.get('/get_board/:boardId', (req, res) => {
     res.status(404).json({ status: 'Board not found' });
   }
 });
-    // Write the updated JSON to the file
-    fs.writeFile('./db.json', updatedJson, (err) => {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ status: 'Error writing to file' });
-      } else {
-        console.log('New board created and written to file');
-        res.json({ status: 'New board created', boardId });
-      }
-    });
-  });
 
 function isString(value) {
     return typeof value === 'string';
