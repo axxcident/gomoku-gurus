@@ -35,7 +35,17 @@ router.post('/create_new_board', (req, res) => {
 
     // Convert the updated object back to JSON
     const updatedJson = JSON.stringify(gameData);
-
+    
+// Hämta ett specifik bräda med hjälp av bräda id, boardId
+router.get('/get_board/:boardId', (req, res) => {
+  const { boardId } = req.params;
+  if (gameData[boardId]) {
+    res.json(gameData[boardId]);
+    console.log('itsworking')
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
     // Write the updated JSON to the file
     fs.writeFile('./db.json', updatedJson, (err) => {
       if (err) {
