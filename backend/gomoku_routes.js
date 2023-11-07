@@ -48,12 +48,12 @@ router.post('/create_new_board', (req, res) => {
   });
 });
 
-// Hämta ett specifik bräda med hjälp av bräda id, boardId
+// Hämta ett specifik bräda med hjälp av boardId
 router.get('/get_board/:boardId', (req, res) => {
   const { boardId } = req.params;
   if (gameData[boardId]) {
     res.json(gameData[boardId]);
-    console.log('itsworking')
+    console.log('individual board fetched')
   } else {
     res.status(404).json({ status: 'Board not found' });
   }
@@ -131,7 +131,7 @@ router.post('/click_tile/:boardId', (req, res) =>{
           res.status(500).json({ status: "Error writing to file" });
         } else {
           console.log(`Data written to file player ${isPlayer1orPlayer2} clicked tile ${rowId} ${colId}`);
-          res.json({ status: `Tile changed: player ${isPlayer1orPlayer2} clicked tile ${rowId} ${colId}` });
+          res.json({ status: `Tile changed: player ${isPlayer1orPlayer2} clicked row tile: ${rowId} & column tile: ${colId}` });
         }
     });
   }
