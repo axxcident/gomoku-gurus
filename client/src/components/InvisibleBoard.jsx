@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react'
-const { getGameBoard } = require('../api/Gamedata');
+import { useParams } from 'react-router-dom';
+const { getGameBoard, clickTile } = require('../api/Gamedata');
 
 const InvisibleBoard = () => {
+  const { boardId } = useParams();
   const [gameBoardData, setGameBoardData] = useState(null);
   const [isBlack, setIsBlack] = useState(true);
 
   useEffect(() => {
-    getGameBoard("2ca69660-fa1b-45be-b53d-29ea6ca839f9")
+    getGameBoard(boardId)
       .then(data => {
         setGameBoardData(data);
         JSON.stringify(gameBoardData, null, 2)
@@ -17,9 +19,6 @@ const InvisibleBoard = () => {
   const handleInvisibleClick = (rowIndex, colIndex) => {
     console.log(`invisible click is row: ${rowIndex} and column: ${colIndex}`)
     gameBoardData.board.tiles[rowIndex][colIndex] = isBlack ? 1 : 2;
-    // const newInvisibleCells = [...invisibleCells];
-    // newInvisibleCells[i] = isBlack ? 'b-circle' : 'w-circle';
-    // setInvisibleCells(newInvisibleCells);
     setIsBlack(!isBlack);
   };
 
