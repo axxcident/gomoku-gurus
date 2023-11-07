@@ -45,8 +45,19 @@ router.post('/create_new_board', (req, res) => {
         console.log('New board created and written to file');
         res.json({ status: 'New board created', boardId });
       }
-    });
   });
+});
+
+// Hämta ett specifik bräda med hjälp av bräda id, boardId
+router.get('/get_board/:boardId', (req, res) => {
+  const { boardId } = req.params;
+  if (gameData[boardId]) {
+    res.json(gameData[boardId]);
+    console.log('itsworking')
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
 
 function isString(value) {
     return typeof value === 'string';
