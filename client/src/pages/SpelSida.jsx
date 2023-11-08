@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import Board from '../components/Board'
 import { useParams } from 'react-router-dom';
 import { BsArrowLeft } from "react-icons/bs";
@@ -8,7 +8,7 @@ import {BsFillClockFill} from"react-icons/bs";
 
 function SpelSida() {
   const { boardId } = useParams();
-
+const [time, setTime] = useState(120) // sätter timer 120 seconder = 2 minuter
   const goBack = ()=>{
     window.history.back()
   }
@@ -16,7 +16,22 @@ function SpelSida() {
   const refreshGame = ()=>{
     window.location.reload();
   }
+  
+  useEffect(()=>{
+    const timer = setInterval (()=>{
+      if(time > 0 ) {
+        setTime ((pervTime) => pervTime -1);
 
+      }
+    }, 1000)
+  return () => {
+    clearInterval (timer);
+  }
+  }, [time])
+ //formatera tiden i minuter och sekunder
+ const minutes = Math.floor(time/60)
+ const seconds= time % 60;
+ const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2,'0')}`;
   return (
     <div className='board-wrapper' >
       <div className='board-con' >
@@ -34,9 +49,9 @@ function SpelSida() {
         <Board boardId={boardId}  />
         <div className='board-bottom'> <BsArrowLeft className='icons' onClick={goBack}/>
           <div className='board-timer'>
-            <p> 00:05</p>
+            <p> {formattedTime}</p>
             <BsFillClockFill className='icons'/>
-            <p>00:05</p>
+            <p>{formattedTime}</p>
           </div>
           <BsArrowClockwise className='icons' onClick={refreshGame} />
         </div>
