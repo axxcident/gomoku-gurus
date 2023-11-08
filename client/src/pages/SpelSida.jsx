@@ -1,10 +1,13 @@
 import React from 'react'
 import Board from '../components/Board'
-
+import { useParams } from 'react-router-dom';
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowClockwise } from "react-icons/bs";
 import {BsFillClockFill} from"react-icons/bs";
+
+
 function SpelSida() {
+  const { boardId } = useParams();
 
   const goBack = ()=>{
     window.history.back()
@@ -28,7 +31,7 @@ function SpelSida() {
           </div>
         </div>
 
-        <Board />
+        <Board boardId={boardId}  />
         <div className='board-bottom'> <BsArrowLeft className='icons' onClick={goBack}/>
           <div className='board-timer'>
             <p> 00:05</p>
