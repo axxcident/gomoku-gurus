@@ -1,50 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import InvisibleBoard from './InvisibleBoard';
 
-const Board = () => {
-  const [cells, setCells] = useState(Array(15 * 15).fill(null));
-  const [invisibleCells, setInvisibleCells] = useState(Array(16 * 16).fill(null));
-  const [isBlack, setIsBlack] = useState(true);
-
-  const handleClick = (i) => {
-    const newCells = [...cells];
-    newCells[i] = isBlack ? 'b-circle' : 'w-circle';
-    setCells(newCells);
-  };
-
-  const handleInvisibleClick = (i) => {
-    const newInvisibleCells = [...invisibleCells];
-    newInvisibleCells[i] = isBlack ? 'b-circle' : 'w-circle';
-    setInvisibleCells(newInvisibleCells);
-    setIsBlack(!isBlack);
-  };
+const Board = (boardId) => {
+  const visibleCells = [];
+  for (let i = 0; i < 15 * 15; i++) {
+    visibleCells.push(i);
+  }
 
   return (
     <>
       <div className="board-container">
-        <h5>Board</h5>
         <div className='board'>
-          {cells.map((cell, i) => (
-            <button key={i} className='cell'></button>
+          {visibleCells.map((cell) => (
+            <button key={cell} className='cell'></button>
           ))}
         </div>
-        <InvisibleBoard onClick={handleInvisibleClick} invisibleCells={invisibleCells} />
+        <InvisibleBoard boardId={boardId} />
       </div>
     </>
-  );
-};
-
-const InvisibleBoard = ({ onClick, invisibleCells }) => {
-  return (
-    <div className='invisible-board'>
-      <div className='i-board'>
-        {invisibleCells.map((cell, i) => (
-          <button key={i} className='invisible-cell' onClick={() => onClick(i)}>
-            {cell === 'b-circle' ? <div className='b-circle'></div> : null}
-            {cell === 'w-circle' ? <div className='w-circle'></div> : null}
-          </button>
-        ))}
-      </div>
-    </div>
   );
 };
 
