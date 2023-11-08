@@ -8,7 +8,7 @@ import {BsFillClockFill} from"react-icons/bs";
 
 function SpelSida() {
   const { boardId } = useParams();
-const [time, setTime] = useState(120) // sätter timer 120 seconder = 2 minuter
+  const [time, setTime] = useState(0);  
   const goBack = ()=>{
     window.history.back()
   }
@@ -16,18 +16,27 @@ const [time, setTime] = useState(120) // sätter timer 120 seconder = 2 minuter
   const refreshGame = ()=>{
     window.location.reload();
   }
-  
-  useEffect(()=>{
-    const timer = setInterval (()=>{
-      if(time > 0 ) {
-        setTime ((pervTime) => pervTime -1);
+  // logi för timer
+  useEffect(() => {
+    
+    let timer;
 
-      }
-    }, 1000)
-  return () => {
-    clearInterval (timer);
-  }
-  }, [time])
+    if (time >= 0) {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 1); // öka tiden när timer startar
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timer); // clearInterval rensar tiden om man börjar ett nytt spel
+    };
+  }, [time]);
+
+  // Funktion för att stoppa timern när spelet är över (vi behöver funktion för att avgöra om spelet är klart 
+  const stopTimer = () => {
+    setTime(-1); // ställ in timern för negativ värde för att stoppa den
+  };
+
  //formatera tiden i minuter och sekunder
  const minutes = Math.floor(time/60)
  const seconds= time % 60;
@@ -67,7 +76,9 @@ const [time, setTime] = useState(120) // sätter timer 120 seconder = 2 minuter
       <div>
         <p>Total varv: 0</p>
       </div>
+     
     </div>
+   
   </div>)
 }
 
