@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react'
 const { getGameBoard, clickTile } = require('../api/Gamedata');
+const {checkFiveInARow} = require('../api/Wincheck');
 
 const InvisibleBoard = (boardId) => {
   const [gameBoardData, setGameBoardData] = useState(null);
+  const [boardProp, setBoardProp] = useState(null);
   const [isBlack, setIsBlack] = useState(true);
+  const [gameState, setgameState] = useState(false);
   const playerProfileData = localStorage.getItem('playerName');
   const playerName = playerProfileData ? JSON.parse(playerProfileData).playerName : null;
 
@@ -13,16 +16,23 @@ const InvisibleBoard = (boardId) => {
     getGameBoard(boardId.boardId.boardId)
       .then(data => {
         setGameBoardData(data);
+        setBoardProp(data);
         JSON.stringify(gameBoardData, null, 2)
       })
       .catch(error => console.error(error));
   }, []);
 
   const handleInvisibleClick = (rowIndex, colIndex) => {
-    console.log(`invisible click is row: ${rowIndex} and column: ${colIndex}`)
     gameBoardData.board.tiles[rowIndex][colIndex] = isBlack ? 1 : 2;
-    console.log(boardId.boardId.boardId, rowIndex, colIndex, playerName, isBlack ? 1 : 2)
     clickTile(boardId.boardId.boardId, rowIndex, colIndex, playerName, isBlack ? 1 : 2);
+    let speletvunnet = checkFiveInARow(boardProp.board.tiles, isBlack ? 1 : 2 );
+    if (speletvunnet === true) {
+      setgameState(true);
+      alert(`Spelare ${isBlack ? 1 : 2} har vunnit`)
+    }
+    else {
+      console.log("Ingen vinnare än")
+    }
     setIsBlack(!isBlack);
   };
 
