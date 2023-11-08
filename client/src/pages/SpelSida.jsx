@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import Board from '../components/Board'
 import { useParams } from 'react-router-dom';
 import { BsArrowLeft } from "react-icons/bs";
@@ -8,7 +8,7 @@ import {BsFillClockFill} from"react-icons/bs";
 
 function SpelSida() {
   const { boardId } = useParams();
-
+  const [time, setTime] = useState(0);  
   const goBack = ()=>{
     window.history.back()
   }
@@ -16,7 +16,31 @@ function SpelSida() {
   const refreshGame = ()=>{
     window.location.reload();
   }
+  // logi för timer
+  useEffect(() => {
+    
+    let timer;
 
+    if (time >= 0) {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 1); // öka tiden när timer startar
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timer); // clearInterval rensar tiden om man börjar ett nytt spel
+    };
+  }, [time]);
+
+  // Funktion för att stoppa timern när spelet är över (vi behöver funktion för att avgöra om spelet är klart 
+  const stopTimer = () => {
+    setTime(-1); // ställ in timern för negativ värde för att stoppa den
+  };
+
+ //formatera tiden i minuter och sekunder
+ const minutes = Math.floor(time/60)
+ const seconds= time % 60;
+ const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2,'0')}`;
   return (
     <div className='board-wrapper' >
       <div className='board-con' >
@@ -34,9 +58,9 @@ function SpelSida() {
         <Board boardId={boardId}  />
         <div className='board-bottom'> <BsArrowLeft className='icons' onClick={goBack}/>
           <div className='board-timer'>
-            <p> 00:05</p>
+            <p> {formattedTime}</p>
             <BsFillClockFill className='icons'/>
-            <p>00:05</p>
+            <p>{formattedTime}</p>
           </div>
           <BsArrowClockwise className='icons' onClick={refreshGame} />
         </div>
@@ -52,7 +76,9 @@ function SpelSida() {
       <div>
         <p>Total varv: 0</p>
       </div>
+     
     </div>
+   
   </div>)
 }
 
