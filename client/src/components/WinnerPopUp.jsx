@@ -12,7 +12,7 @@ const handleClick = ()=>{
 
   return isWinningPopUpHidden ? (
 
-    <div className='winning-popup'>
+    <div className='winning-popup' data-testid="winner-popup">
    <div className='winning-popup-content'><button id='close-winning-popup' onClick={handleClick}>✖</button>
 
 
