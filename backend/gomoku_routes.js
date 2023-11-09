@@ -88,6 +88,36 @@ router.post('/add_player1/:boardId', (req, res) =>{
     }
 });
 
+
+
+
+// Återställa board med id
+router.post('/reset_board/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId]) {
+    // återställa till den orginala data 
+    gameData[boardId].board.tiles = Array(17).fill(Array(17).fill(0));
+    
+    // Uuppdatera json data
+
+    const updatedJson = JSON.stringify(gameData);
+
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Board reset successful');
+        res.json({ status: 'Board reset successful' });
+      }
+    });
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
+
+
 // Addera Spelare 2
 router.post('/add_player2/:boardId', (req, res) =>{
   const { playerName } = req.body;
