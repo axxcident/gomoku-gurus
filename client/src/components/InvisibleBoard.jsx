@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
+import { useParams } from 'react-router';
 const { getGameBoard, clickTile } = require('../api/Gamedata');
 const {checkFiveInARow} = require('../api/Wincheck');
 
-const InvisibleBoard = ({ boardId }) => {
+const InvisibleBoard = () => {
+  const { boardId } = useParams();
   const [gameBoardData, setGameBoardData] = useState(null);
   const [boardProp, setBoardProp] = useState(null);
   const [isBlack, setIsBlack] = useState(true);
@@ -12,19 +14,17 @@ const InvisibleBoard = ({ boardId }) => {
 
 
   useEffect(() => {
-    // console.log(boardId.boardId.boardId)
     getGameBoard(boardId)
       .then(data => {
         setGameBoardData(data);
         setBoardProp(data);
-        JSON.stringify(gameBoardData, null, 2)
       })
       .catch(error => console.error(error));
-  }, []);
+  }, [boardId]);
 
   const handleInvisibleClick = (rowIndex, colIndex) => {
     gameBoardData.board.tiles[rowIndex][colIndex] = isBlack ? 1 : 2;
-    clickTile(boardId.boardId.boardId, rowIndex, colIndex, playerName, isBlack ? 1 : 2);
+    clickTile(boardId, rowIndex, colIndex, playerName, isBlack ? 1 : 2);
     let speletvunnet = checkFiveInARow(boardProp.board.tiles, isBlack ? 1 : 2 );
     if (speletvunnet === true) {
       setgameState(true);
@@ -38,13 +38,13 @@ const InvisibleBoard = ({ boardId }) => {
 
   return (
     <div className='invisible-board' data-testid="invisible-board">
-      <div className='i-board'>
+      <div className='i-board' data-testid="i-board">
       {
       gameBoardData ? (
         gameBoardData.board.tiles.map((row, rowIndex) => (
-          <div key={rowIndex} className='invisible-row'>
+          <div key={rowIndex} className='invisible-row' data-testid='invisible-row'>
             {row.map((cell, colIndex) => (
-              <button key={colIndex} className='invisible-cell' onClick={() => handleInvisibleClick(rowIndex, colIndex)}>
+              <button key={colIndex} className='invisible-cell' data-testid='invisible-cell' onClick={() => handleInvisibleClick(rowIndex, colIndex)}>
                 {cell === 1 ? <div className='b-circle'></div> : null}
                 {cell === 2 ? <div className='w-circle'></div> : null}
               </button>

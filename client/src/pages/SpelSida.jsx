@@ -1,14 +1,12 @@
 import React, {useEffect,useState} from 'react'
 import Board from '../components/Board'
-import { useParams } from 'react-router-dom';
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowClockwise } from "react-icons/bs";
 import {BsFillClockFill} from"react-icons/bs";
 
 
 function SpelSida() {
-  const { boardId } = useParams();
-  const [time, setTime] = useState(0);  
+  const [time, setTime] = useState(0);
   const goBack = ()=>{
     window.history.back()
   }
@@ -18,7 +16,7 @@ function SpelSida() {
   }
   // logi för timer
   useEffect(() => {
-    
+
     let timer;
 
     if (time >= 0) {
@@ -32,7 +30,7 @@ function SpelSida() {
     };
   }, [time]);
 
-  // Funktion för att stoppa timern när spelet är över (vi behöver funktion för att avgöra om spelet är klart 
+  // Funktion för att stoppa timern när spelet är över (vi behöver funktion för att avgöra om spelet är klart
   const stopTimer = () => {
     setTime(-1); // ställ in timern för negativ värde för att stoppa den
   };
@@ -55,7 +53,7 @@ function SpelSida() {
           </div>
         </div>
 
-        <Board boardId={boardId}  />
+        <Board />
         <div className='board-bottom'> <BsArrowLeft className='icons' onClick={goBack}/>
           <div className='board-timer'>
             <p> {formattedTime}</p>
@@ -76,9 +74,9 @@ function SpelSida() {
       <div>
         <p>Total varv: 0</p>
       </div>
-     
+
     </div>
-   
+
   </div>)
 }
 

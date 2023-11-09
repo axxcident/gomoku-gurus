@@ -15,7 +15,7 @@ const Board = ({ boardId }) => {
             <button key={cell} className='cell'></button>
           ))}
         </div>
-        <InvisibleBoard boardId={boardId} />
+        <InvisibleBoard />
       </div>
     </>
   );
