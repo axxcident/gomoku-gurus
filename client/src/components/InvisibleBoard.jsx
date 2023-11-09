@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 const { getGameBoard, clickTile } = require('../api/Gamedata');
 const {checkFiveInARow} = require('../api/Wincheck');
 
-const InvisibleBoard = (boardId) => {
+const InvisibleBoard = ({ boardId }) => {
   const [gameBoardData, setGameBoardData] = useState(null);
   const [boardProp, setBoardProp] = useState(null);
   const [isBlack, setIsBlack] = useState(true);
@@ -13,7 +13,7 @@ const InvisibleBoard = (boardId) => {
 
   useEffect(() => {
     // console.log(boardId.boardId.boardId)
-    getGameBoard(boardId.boardId.boardId)
+    getGameBoard(boardId)
       .then(data => {
         setGameBoardData(data);
         setBoardProp(data);
