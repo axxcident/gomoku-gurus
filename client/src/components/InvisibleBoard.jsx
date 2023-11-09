@@ -37,7 +37,7 @@ const InvisibleBoard = ({ boardId }) => {
   };
 
   return (
-    <div className='invisible-board'>
+    <div className='invisible-board' data-testid="invisible-board">
       <div className='i-board'>
       {
       gameBoardData ? (
