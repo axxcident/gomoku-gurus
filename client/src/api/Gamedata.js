@@ -42,18 +42,18 @@ const resetGameBoard = async (boardId) => {
 };
 
 
-const addPlayer1 = async (playerName) => {
+const addPlayer1 = async (playerName, boardId) => {
   try {
-    const response = await axios.post('/api/add_player1', { playerName });
+    const response = await axios.post(`/api/add_player1/${boardId}`, { playerName });
     return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-const addPlayer2 = async (playerName) => {
+const addPlayer2 = async (playerName, boardId) => {
   try {
-    const response = await axios.post('/api/add_player2', { playerName });
+    const response = await axios.post(`/api/add_player2/${boardId}`, { playerName });
     return response.data;
   } catch (error) {
     console.error(error);

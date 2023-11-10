@@ -88,17 +88,14 @@ router.post('/add_player1/:boardId', (req, res) =>{
     }
 });
 
-
-
-
 // Återställa board med id
 router.post('/reset_board/:boardId', (req, res) => {
   const { boardId } = req.params;
 
   if (gameData[boardId]) {
-    // återställa till den orginala data 
+    // återställa till den orginala data
     gameData[boardId].board.tiles = Array(17).fill(Array(17).fill(0));
-    
+
     // Uuppdatera json data
 
     const updatedJson = JSON.stringify(gameData);
@@ -191,8 +188,7 @@ router.post('/change_board_state/:boardId', (req, res) => {
     } else {
       res.status(400).json({ status: 'Invalid state or board not found' });
     }
-  });
-
+});
 
 
 router.get('/play', (req, res) =>{

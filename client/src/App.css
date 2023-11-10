@@ -293,8 +293,6 @@ font-family: 'Krona One', sans-serif; */
   display: flex;
   align-items: center;
   column-gap: 10px;
- 
- 
 }
 
 .board-top button{
@@ -355,6 +353,7 @@ font-family: 'Krona One', sans-serif; */
   height: 30px;
   border-radius: 50%;
   background-color: #fff;
+  border: solid black 1px;
  }
  .board-wrapper{
   display: flex;
