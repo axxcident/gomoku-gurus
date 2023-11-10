@@ -24,8 +24,8 @@ const InvisibleBoard = () => {
 
   const handleStateGame = async () => {
     try {
-      await changeBoardState(boardId, 'Playing'); // Replace 'Playing' with the actual updated state.
-      setGameDetails({ ...gameDetails, state: 'Playing' });
+      await changeBoardState(boardId, 'Spelar');
+      setGameDetails({ ...gameDetails, state: 'Spelar' });
     } catch (error) {
       console.error(error);
     }

@@ -60,7 +60,6 @@ const addPlayer2 = async (playerName, boardId) => {
   }
 };
 
-
 const changeBoardState = async (boardId, newState) => {
     try {
       const response = await axios.post(`/api/change_board_state/${boardId}`, { newState });
