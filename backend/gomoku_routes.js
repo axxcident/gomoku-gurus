@@ -113,7 +113,7 @@ router.post('/add_player2/:boardId', (req, res) =>{
 });
 
 // Klicka på ruta och ändra värde i Board
-router.put('/click_tile/:boardId', (req, res) =>{
+router.patch('/click_tile/:boardId', (req, res) =>{
   const { rowId } = req.body;
   const { colId } = req.body;
   const { playerName } = req.body;
@@ -141,7 +141,7 @@ router.put('/click_tile/:boardId', (req, res) =>{
 });
 
 // Ändra spel status för en specifik bräda
-router.put('/change_board_state/:boardId', (req, res) => {
+router.patch('/change_board_state/:boardId', (req, res) => {
     const { boardId } = req.params;
     const { newState } = req.body;
 
@@ -164,7 +164,7 @@ router.put('/change_board_state/:boardId', (req, res) => {
 });
 
 // Återställa board med id
-router.put('/reset_board/:boardId', (req, res) => {
+router.patch('/reset_board/:boardId', (req, res) => {
   const { boardId } = req.params;
 
   if (gameData[boardId]) {
@@ -189,7 +189,7 @@ router.put('/reset_board/:boardId', (req, res) => {
 });
 
 // öka siffra på drag
-router.put('/increment_rounds/:boardId', (req, res) => {
+router.patch('/increment_rounds/:boardId', (req, res) => {
   const { boardId } = req.params;
 
   if (gameData[boardId]) {
@@ -211,11 +211,46 @@ router.put('/increment_rounds/:boardId', (req, res) => {
 });
 
 // nollställ siffra på drag för bräda
-router.put('/zero_rounds/:boardId', (req, res) => {
+router.patch('/zero_rounds/:boardId', (req, res) => {
   const { boardId } = req.params;
 
   if (gameData[boardId]) {
     gameData[boardId].round = 0;
+    // Update JSON data
+    const updatedJson = JSON.stringify(gameData);
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Round count reset successful');
+        res.json({ status: 'Round count reset successful' });
+      }
+    });
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
+
+// byt till andra spelare
+router.patch('/change_player/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId].playerTurn === 1) {
+    gameData[boardId].playerTurn = 2;
+    // Update JSON data
+    const updatedJson = JSON.stringify(gameData);
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Round count reset successful');
+        res.json({ status: 'Round count reset successful' });
+      }
+    });
+  } else if (gameData[boardId].playerTurn === 2) {
+    gameData[boardId].playerTurn = 1;
     // Update JSON data
     const updatedJson = JSON.stringify(gameData);
     fs.writeFile('./db.json', updatedJson, (err) => {

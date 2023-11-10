@@ -6,29 +6,31 @@ import { useParams } from 'react-router-dom';
 const GameDetails = () => {
   const { boardId } = useParams();
   const { gameDetails, setGameDetails } = useGameDetails();
-  const [currentPlayer, setCurrentPlayer] = useState(1);
+  const [gameBoardData, setGameBoardData] = useState(null);
 
-  // logik för att hämta spelets status
   useEffect(() => {
     const fetchGameState = async () => {
       try {
         const newState = await getGameBoard(boardId);
-        setGameDetails({ ...gameDetails, state: newState.state, round: newState.round });
-        // setGameDetails({ ...gameDetails, state: newState.state });
-        // setGameDetails({ ...gameDetails, round: newState.round });
+        setGameDetails({
+          ...gameDetails,
+          state: newState.state,
+          round: newState.round,
+          playerTurn: newState.playerTurn,
+        });
       } catch (error) {
         console.error(error);
       }
     };
     fetchGameState();
-  }, [gameDetails.state, gameDetails.round]);
+  }, [gameDetails.state, gameDetails.playerTurn, gameDetails.round]);
 
   return (
     <>
       <div className='game-details'>
         <div className='player'>
           {
-            currentPlayer === 1 ? (
+            gameDetails.playerTurn === 1 ? (
               <p className='black-circle'></p>
             ) : (
               <p className='white-circle'></p>
