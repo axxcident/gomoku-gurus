@@ -2,7 +2,7 @@ import React from 'react'
 import Board from '../components/Board'
 import Timer from '../components/Timer';
 import GameDetails from '../components/GameDetails';
-import { resetGameBoard, changeBoardState } from '../api/Gamedata';
+import { resetGameBoard, changeBoardState, zeroRounds } from '../api/Gamedata';
 import { useParams } from 'react-router-dom';
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowClockwise } from "react-icons/bs";
@@ -20,6 +20,7 @@ function SpelSida() {
     try {
       await resetGameBoard(boardId);
       await changeBoardState(boardId, "Nytt spel");
+      await zeroRounds(boardId);
       window.location.reload();
     } catch (error) {
       console.error(error);

@@ -8,9 +8,9 @@ export const useGameDetails = () => {
 
 export const GameDetailsProvider = ({ children }) => {
   const [gameDetails, setGameDetails] = useState({
-    round: 1,
+    round: 0,
     playerTurn: 1,
-    state: 'new',
+    state: 'Nytt Spel',
   });
 
   return (

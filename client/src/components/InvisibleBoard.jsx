@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router';
 import { useGameDetails } from '../api/GameDetailsContext';
-const { getGameBoard, clickTile, changeBoardState } = require('../api/Gamedata');
+const { getGameBoard, clickTile, changeBoardState, incrementRounds } = require('../api/Gamedata');
 const {checkFiveInARow} = require('../api/Wincheck');
 
 const InvisibleBoard = () => {
@@ -31,11 +31,22 @@ const InvisibleBoard = () => {
     }
   };
 
+  const handleIncrementRounds = async () => {
+    try {
+      await incrementRounds(boardId);
+      setGameDetails({ ...gameDetails, round: gameDetails.round + 1 });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleInvisibleClick = (rowIndex, colIndex) => {
     // Kolla om första drag har skett
     if(!gameBoardData.board.tiles.some(row => row.some(cell => cell !== 0))) {
       handleStateGame();
     }
+    // Lägg till drag i totalMoves
+    handleIncrementRounds();
     // lägger 1 eller 2 i arrayen/brädan i frontend
     gameBoardData.board.tiles[rowIndex][colIndex] = isBlack ? 1 : 2;
     // lägger 1 eller 2 i arrayen/brädan i backend

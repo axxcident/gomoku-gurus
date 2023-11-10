@@ -7,20 +7,21 @@ const GameDetails = () => {
   const { boardId } = useParams();
   const { gameDetails, setGameDetails } = useGameDetails();
   const [currentPlayer, setCurrentPlayer] = useState(1);
-  const [totalMoves, setTotalMoves] = useState(0);
 
   // logik för att hämta spelets status
   useEffect(() => {
     const fetchGameState = async () => {
       try {
         const newState = await getGameBoard(boardId);
-        setGameDetails({ ...gameDetails, state: newState.state });
+        setGameDetails({ ...gameDetails, state: newState.state, round: newState.round });
+        // setGameDetails({ ...gameDetails, state: newState.state });
+        // setGameDetails({ ...gameDetails, round: newState.round });
       } catch (error) {
         console.error(error);
       }
     };
     fetchGameState();
-  }, [boardId]);
+  }, [gameDetails.state, gameDetails.round]);
 
   return (
     <>
@@ -39,7 +40,8 @@ const GameDetails = () => {
           <p>Status: {gameDetails.state}</p>
         </div>
         <div>
-          <p>Totalt antal drag: {totalMoves}</p>
+          {/* <p>Totalt antal drag: 0</p> */}
+          <p>Totalt antal drag: {gameDetails.round}</p>
         </div>
       </div>
     </>
