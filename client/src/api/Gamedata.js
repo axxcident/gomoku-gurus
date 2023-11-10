@@ -30,6 +30,18 @@ const createNewGameBoard = async () => {
   }
 }
 
+// Återställ data med board id
+const resetGameBoard = async (boardId) => {
+  try {
+    const response = await axios.post(`/api/reset_board/${boardId}`);
+    console.log('Board reset successful');
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 const addPlayer1 = async (playerName) => {
   try {
     const response = await axios.post('/api/add_player1', { playerName });
@@ -68,4 +80,4 @@ const clickTile = async(boardId, rowId, colId, playerName, isPlayer1orPlayer2) =
   }
 };
 
-export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile, getGameBoard, changeBoardState };
+export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile, getGameBoard, changeBoardState, resetGameBoard };
