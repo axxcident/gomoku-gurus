@@ -232,6 +232,28 @@ router.patch('/zero_rounds/:boardId', (req, res) => {
   }
 });
 
+// nollställ siffra på drag för bräda
+router.patch('/reset_player/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId]) {
+    gameData[boardId].playerTurn = 1;
+    // Update JSON data
+    const updatedJson = JSON.stringify(gameData);
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Round count reset successful');
+        res.json({ status: 'Round count reset successful' });
+      }
+    });
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
+
 // byt till andra spelare
 router.patch('/change_player/:boardId', (req, res) => {
   const { boardId } = req.params;

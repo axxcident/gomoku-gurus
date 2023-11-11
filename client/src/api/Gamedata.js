@@ -95,6 +95,14 @@ const zeroRounds = async (boardId) => {
   }
 };
 
+const resetPlayerTurn = async (boardId) => {
+  try {
+    await axios.patch(`/api/reset_player/${boardId}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const changePlayer = async (boardId) => {
   try {
     await axios.patch(`/api/change_player/${boardId}`);
@@ -103,4 +111,4 @@ const changePlayer = async (boardId) => {
   }
 };
 
-export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile, getGameBoard, changeBoardState, resetGameBoard, incrementRounds, zeroRounds, changePlayer };
+export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile, getGameBoard, changeBoardState, resetGameBoard, incrementRounds, zeroRounds, changePlayer, resetPlayerTurn };
