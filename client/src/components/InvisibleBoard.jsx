@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router';
-const { getGameBoard, clickTile } = require('../api/Gamedata');
+import { useGameDetails } from '../api/GameDetailsContext';
+const { getGameBoard, clickTile, changeBoardState, incrementRounds, changePlayer } = require('../api/Gamedata');
 const {checkFiveInARow} = require('../api/Wincheck');
 
 const InvisibleBoard = () => {
+  const { gameDetails, setGameDetails } = useGameDetails();
   const { boardId } = useParams();
   const [gameBoardData, setGameBoardData] = useState(null);
   const [boardProp, setBoardProp] = useState(null);
   const [isBlack, setIsBlack] = useState(true);
-  const [gameState, setgameState] = useState(false);
   const playerProfileData = localStorage.getItem('playerName');
   const playerName = playerProfileData ? JSON.parse(playerProfileData).playerName : null;
-
 
   useEffect(() => {
     getGameBoard(boardId)
@@ -22,17 +22,55 @@ const InvisibleBoard = () => {
       .catch(error => console.error(error));
   }, [boardId]);
 
+  const handleStateGame = async () => {
+    try {
+      await changeBoardState(boardId, 'Spelar');
+      setGameDetails({ ...gameDetails, state: 'Spelar' });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleIncrementRounds = async () => {
+    try {
+      await incrementRounds(boardId);
+      setGameDetails({ ...gameDetails, round: gameDetails.round + 1 });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const handleChangePlayer = async () => {
+    try {
+      await changePlayer(boardId);
+      setGameDetails({ ...gameDetails, playerTurn: isBlack ? 1 : 2 });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleInvisibleClick = (rowIndex, colIndex) => {
+    // Kolla om första drag har skett
+    if(!gameBoardData.board.tiles.some(row => row.some(cell => cell !== 0))) {
+      handleStateGame();
+    }
+    // Lägg till drag i totalMoves
+    handleIncrementRounds();
+    // lägger 1 eller 2 i arrayen/brädan i frontend
     gameBoardData.board.tiles[rowIndex][colIndex] = isBlack ? 1 : 2;
+    // lägger 1 eller 2 i arrayen/brädan i backend
     clickTile(boardId, rowIndex, colIndex, playerName, isBlack ? 1 : 2);
+    // Kollar ifall spel är vunnet
     let speletvunnet = checkFiveInARow(boardProp.board.tiles, isBlack ? 1 : 2 );
     if (speletvunnet === true) {
-      setgameState(true);
       alert(`Spelare ${isBlack ? 1 : 2} har vunnit`)
     }
     else {
       console.log("Ingen vinnare än")
     }
+    // Andra spelares tur
+    handleChangePlayer();
     setIsBlack(!isBlack);
   };
 

@@ -16,12 +16,12 @@ router.post('/create_new_board', (req, res) => {
     // Define the new board object
     const newBoard = {
       id: boardId,
-      name: 'empty game',
-      round: 1,
+      name: 'new game',
+      round: 0,
       playerTurn: 1,
       player1: [],
       player2: [],
-      state: 'new',
+      state: 'Nytt spel',
       board: {
         minInRow: 5,
         cols: 16,
@@ -88,36 +88,6 @@ router.post('/add_player1/:boardId', (req, res) =>{
     }
 });
 
-
-
-
-// Återställa board med id
-router.post('/reset_board/:boardId', (req, res) => {
-  const { boardId } = req.params;
-
-  if (gameData[boardId]) {
-    // återställa till den orginala data 
-    gameData[boardId].board.tiles = Array(17).fill(Array(17).fill(0));
-    
-    // Uuppdatera json data
-
-    const updatedJson = JSON.stringify(gameData);
-
-    fs.writeFile('./db.json', updatedJson, (err) => {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ status: 'Error writing to file' });
-      } else {
-        console.log('Board reset successful');
-        res.json({ status: 'Board reset successful' });
-      }
-    });
-  } else {
-    res.status(404).json({ status: 'Board not found' });
-  }
-});
-
-
 // Addera Spelare 2
 router.post('/add_player2/:boardId', (req, res) =>{
   const { playerName } = req.body;
@@ -143,7 +113,7 @@ router.post('/add_player2/:boardId', (req, res) =>{
 });
 
 // Klicka på ruta och ändra värde i Board
-router.post('/click_tile/:boardId', (req, res) =>{
+router.patch('/click_tile/:boardId', (req, res) =>{
   const { rowId } = req.body;
   const { colId } = req.body;
   const { playerName } = req.body;
@@ -170,8 +140,8 @@ router.post('/click_tile/:boardId', (req, res) =>{
   }
 });
 
-// Ändra tillståndet för en specifik bräda
-router.post('/change_board_state/:boardId', (req, res) => {
+// Ändra spel status för en specifik bräda
+router.patch('/change_board_state/:boardId', (req, res) => {
     const { boardId } = req.params;
     const { newState } = req.body;
 
@@ -191,8 +161,133 @@ router.post('/change_board_state/:boardId', (req, res) => {
     } else {
       res.status(400).json({ status: 'Invalid state or board not found' });
     }
-  });
+});
 
+// Återställa board med id
+router.patch('/reset_board/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId]) {
+    // återställa till den orginala data
+    gameData[boardId].board.tiles = Array(17).fill(Array(17).fill(0));
+
+    // Uppdatera json data
+    const updatedJson = JSON.stringify(gameData);
+
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Board reset successful');
+        res.json({ status: 'Board reset successful' });
+      }
+    });
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
+
+// öka siffra på drag
+router.patch('/increment_rounds/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId]) {
+    gameData[boardId].round += 1; // Increment the rounds value
+    const updatedJson = JSON.stringify(gameData);
+
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Rounds incremented and written to file');
+        res.json({ status: 'Rounds incremented' });
+      }
+    });
+  } else {
+    res.status(400).json({ status: 'Board not found' });
+  }
+});
+
+// nollställ siffra på drag för bräda
+router.patch('/zero_rounds/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId]) {
+    gameData[boardId].round = 0;
+    // Update JSON data
+    const updatedJson = JSON.stringify(gameData);
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Round count reset successful');
+        res.json({ status: 'Round count reset successful' });
+      }
+    });
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
+
+// nollställ siffra på drag för bräda
+router.patch('/reset_player/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId]) {
+    gameData[boardId].playerTurn = 1;
+    // Update JSON data
+    const updatedJson = JSON.stringify(gameData);
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Round count reset successful');
+        res.json({ status: 'Round count reset successful' });
+      }
+    });
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
+
+// byt till andra spelare
+router.patch('/change_player/:boardId', (req, res) => {
+  const { boardId } = req.params;
+
+  if (gameData[boardId].playerTurn === 1) {
+    gameData[boardId].playerTurn = 2;
+    // Update JSON data
+    const updatedJson = JSON.stringify(gameData);
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Round count reset successful');
+        res.json({ status: 'Round count reset successful' });
+      }
+    });
+  } else if (gameData[boardId].playerTurn === 2) {
+    gameData[boardId].playerTurn = 1;
+    // Update JSON data
+    const updatedJson = JSON.stringify(gameData);
+    fs.writeFile('./db.json', updatedJson, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ status: 'Error writing to file' });
+      } else {
+        console.log('Round count reset successful');
+        res.json({ status: 'Round count reset successful' });
+      }
+    });
+  } else {
+    res.status(404).json({ status: 'Board not found' });
+  }
+});
 
 
 router.get('/play', (req, res) =>{
