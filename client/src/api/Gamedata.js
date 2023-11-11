@@ -11,19 +11,15 @@ const getGameData = async () => {
     console.error(error);
   }
 };
-// Funktion som fetchar ett specifik bräda med dess id
+
 const getGameBoard = async (boardId) => {
   try {
     const response = await axios.get(`/api/get_board/${boardId}`);
-
     return response.data;
-
   } catch (error) {
     console.error(error);
   }
 };
-
-
 
 const createNewGameBoard = async () => {
   try {
@@ -34,19 +30,11 @@ const createNewGameBoard = async () => {
   }
 }
 
-
-const addPlayer1 = async (playerName) => {
+// Återställ data med board id
+const resetGameBoard = async (boardId) => {
   try {
-    const response = await axios.post('/api/add_player1', { playerName });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const addPlayer2 = async (playerName) => {
-  try {
-    const response = await axios.post('/api/add_player2', { playerName });
+    const response = await axios.patch(`/api/reset_board/${boardId}`);
+    console.log('Board reset successful');
     return response.data;
   } catch (error) {
     console.error(error);
@@ -54,10 +42,27 @@ const addPlayer2 = async (playerName) => {
 };
 
 
+const addPlayer1 = async (playerName, boardId) => {
+  try {
+    const response = await axios.post(`/api/add_player1/${boardId}`, { playerName });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const addPlayer2 = async (playerName, boardId) => {
+  try {
+    const response = await axios.post(`/api/add_player2/${boardId}`, { playerName });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const changeBoardState = async (boardId, newState) => {
     try {
-      const response = await axios.post(`/api/change_board_state/${boardId}`, { newState });
+      const response = await axios.patch(`/api/change_board_state/${boardId}`, { newState });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -65,17 +70,45 @@ const changeBoardState = async (boardId, newState) => {
   };
 
 const clickTile = async(boardId, rowId, colId, playerName, isPlayer1orPlayer2) => {
-  // const url = new URL(window.location.href);
-  // const boardId = url.pathname.split('/').pop();
-  // const boardId = "2ca69660-fa1b-45be-b53d-29ea6ca839f9";
-  console.log("From gameData: ", boardId, rowId, colId, playerName, isPlayer1orPlayer2);
+  // console.log("From gameData: ", boardId, rowId, colId, playerName, isPlayer1orPlayer2);
   try {
-    const response = await axios.post(`/api/click_tile/${boardId}`, { rowId, colId, playerName, isPlayer1orPlayer2 });
+    const response = await axios.patch(`/api/click_tile/${boardId}`, { rowId, colId, playerName, isPlayer1orPlayer2 });
     return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
+const incrementRounds = async (boardId) => {
+  try {
+    await axios.patch(`/api/increment_rounds/${boardId}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile, getGameBoard, changeBoardState };
+const zeroRounds = async (boardId) => {
+  try {
+    await axios.patch(`/api/zero_rounds/${boardId}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const resetPlayerTurn = async (boardId) => {
+  try {
+    await axios.patch(`/api/reset_player/${boardId}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const changePlayer = async (boardId) => {
+  try {
+    await axios.patch(`/api/change_player/${boardId}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { getGameData, addPlayer1, addPlayer2, createNewGameBoard, clickTile, getGameBoard, changeBoardState, resetGameBoard, incrementRounds, zeroRounds, changePlayer, resetPlayerTurn };

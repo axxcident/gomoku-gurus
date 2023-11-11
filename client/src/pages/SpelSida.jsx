@@ -1,10 +1,12 @@
 import React from 'react'
 import Board from '../components/Board'
+import Timer from '../components/Timer';
+import GameDetails from '../components/GameDetails';
+import { resetGameBoard, changeBoardState, zeroRounds, resetPlayerTurn } from '../api/Gamedata';
 import { useParams } from 'react-router-dom';
 import { BsArrowLeft } from "react-icons/bs";
 import { BsArrowClockwise } from "react-icons/bs";
 import {BsFillClockFill} from"react-icons/bs";
-
 
 function SpelSida() {
   const { boardId } = useParams();
@@ -13,8 +15,17 @@ function SpelSida() {
     window.history.back()
   }
 
-  const refreshGame = ()=>{
-    window.location.reload();
+// klick event som hanterar data återställning
+ const handleReset = async () => {
+    try {
+      await resetGameBoard(boardId);
+      await changeBoardState(boardId, "Nytt spel");
+      await zeroRounds(boardId);
+      await resetPlayerTurn(boardId);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -22,7 +33,7 @@ function SpelSida() {
       <div className='board-con' >
         <div className='board-top'>
           <div>
-            <button onClick={refreshGame}>Omstart</button>
+            <button onClick={handleReset} >Omstart</button>
           </div>
           <div className='game-info'>
             <p className='black-circle'></p>
@@ -31,28 +42,17 @@ function SpelSida() {
           </div>
         </div>
 
-        <Board boardId={boardId}  />
+        <Board />
         <div className='board-bottom'> <BsArrowLeft className='icons' onClick={goBack}/>
           <div className='board-timer'>
-            <p> 00:05</p>
+            <Timer />
             <BsFillClockFill className='icons'/>
-            <p>00:05</p>
+            <Timer />
           </div>
-          <BsArrowClockwise className='icons' onClick={refreshGame} />
+          <BsArrowClockwise className='icons' />
         </div>
     </div>
-    <div className='game-details'>
-      <div className='player'>
-        <p  className='black-circle'></p>
-        <p>Spelare</p>
-      </div>
-      <div>
-        <p>spelarstatus : leader</p>
-      </div>
-      <div>
-        <p>Total varv: 0</p>
-      </div>
-    </div>
+    <GameDetails />
   </div>)
 }
 

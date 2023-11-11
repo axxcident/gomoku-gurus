@@ -1,9 +1,9 @@
 import React from 'react';
 import InvisibleBoard from './InvisibleBoard';
 
-const Board = (boardId) => {
+const Board = ({ boardId }) => {
   const visibleCells = [];
-  for (let i = 0; i < 15 * 15; i++) {
+  for (let i = 0; i < 16 * 16; i++) {
     visibleCells.push(i);
   }
 
@@ -15,7 +15,7 @@ const Board = (boardId) => {
             <button key={cell} className='cell'></button>
           ))}
         </div>
-        <InvisibleBoard boardId={boardId} />
+        <InvisibleBoard />
       </div>
     </>
   );
