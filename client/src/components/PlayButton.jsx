@@ -8,8 +8,6 @@ function PlayButton() {
   const [boardId, setBoardId] = useState(null);
   const playerNamelocal = localStorage.getItem('playerName');
   const [playerName, setplayerName] = useState(null);
-  if(!playerName){
-  }
 
   const createGame = async () => {
     try {
@@ -46,7 +44,7 @@ function PlayButton() {
       {playerNamelocal ? (
         <button onClick={createGame} className='start-button'>Skapa nytt spel</button>
         ) : (
-          <button className='start-button' onClick={createProfile} >Skapa profil</button>
+          <button className='start-button' onClick={createProfile}>Skapa profil</button>
         )}
     </div>
     </>
