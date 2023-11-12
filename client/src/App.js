@@ -9,13 +9,13 @@ import Footer from './components/footer.jsx'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const openModal = () => {
-        setIsModalOpen(true)
-    }
-    const closeModal = () => {
-        setIsModalOpen(false)
-    }
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const openModal = () => {
+      setIsModalOpen(true)
+  }
+  const closeModal = () => {
+      setIsModalOpen(false)
+  }
 
   return (
     <>

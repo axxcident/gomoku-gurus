@@ -4,7 +4,7 @@ import { useGameDetails } from '../api/GameDetailsContext';
 const { getGameBoard, clickTile, changeBoardState, incrementRounds, changePlayer } = require('../api/Gamedata');
 const {checkFiveInARow} = require('../api/Wincheck');
 
-const InvisibleBoard = () => {
+const InvisibleBoard = ({ playOneWinner, playTwoWinner }) => {
   const { gameDetails, setGameDetails } = useGameDetails();
   const { boardId } = useParams();
   const [gameBoardData, setGameBoardData] = useState(null);
@@ -64,7 +64,8 @@ const InvisibleBoard = () => {
     // Kollar ifall spel är vunnet
     let speletvunnet = checkFiveInARow(boardProp.board.tiles, isBlack ? 1 : 2 );
     if (speletvunnet === true) {
-      alert(`Spelare ${isBlack ? 1 : 2} har vunnit`)
+      isBlack ? playOneWinner() : playTwoWinner();
+      // alert(`Spelare ${isBlack ? 1 : 2} har vunnit`)
     }
     else {
       console.log("Ingen vinnare än")
