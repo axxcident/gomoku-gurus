@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom'
 
 const Navbar = ({ openModal }) => {
 
-
-    const testclick = () => {
-        const dropdownContent = document.getElementById('dropdownContent');
-        if (dropdownContent.style.display === 'none' || !dropdownContent.style.display) {
-          dropdownContent.style.display = 'block';
-        } else {
-          dropdownContent.style.display = 'none';
-        }
-      };
+  const dropdownContent = () => {
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (dropdownContent.style.display === 'none' || !dropdownContent.style.display) {
+      dropdownContent.style.display = 'block';
+    } else {
+      dropdownContent.style.display = 'none';
+    }
+  };
 
 
   return (
@@ -20,7 +19,7 @@ const Navbar = ({ openModal }) => {
         <img src="/GG_BW.png" alt="gomoku logo" />
       </Link>
         <ul className="navigation-links">
-          <li id='dropdown' onClick={testclick}>
+          <li id='dropdown' onClick={dropdownContent}>
             <button>
              Spelregler
             </button>
@@ -43,9 +42,6 @@ const Navbar = ({ openModal }) => {
           </li>
           <li>
             <Link to="/about">Om spelet</Link>
-          </li>
-          <li>
-            <Link to="/contact">Kontakta oss</Link>
           </li>
           <li>
         <button onClick={openModal}>Logga in</button>

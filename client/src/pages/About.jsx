@@ -2,10 +2,15 @@ import React from "react";
 import PlayButton from "../components/PlayButton";
 
 
-function App () {
+function About () {
+
+    const goBack = ()=>{
+        window.history.back()
+    }
+
     return (
         <div className='about-page'>
-           <button className='arrow-button'>&#129136;</button>
+           <button className='arrow-button' onClick={goBack}>&#129136;</button>
            <div className='about-text'>
             <p className='title-about'>
                 Spelets ursprung
@@ -27,4 +32,4 @@ function App () {
     )
 }
 
-export default App
+export default About
