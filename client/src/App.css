@@ -449,19 +449,6 @@ font-family: 'Krona One', sans-serif; */
     font-size: larger;
   }
 
-/*   .popup button {
-    background-color: #00E0FF;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  } */
-
-/*   .popup button:hover, .popup button:focus {
-    background-color: #0090CC;
-  } */
-
 .form-submitted {
     display: none;
     position: absolute;
@@ -473,6 +460,7 @@ font-family: 'Krona One', sans-serif; */
 
 }
 
+/* Footer */
  .footer {
     background-color: #000;
     margin-top: auto;
@@ -487,65 +475,139 @@ font-family: 'Krona One', sans-serif; */
     text-align: center;
  }
 
+ /* Winning or Losing popup */
+
+ .dark-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+ }
+
  .losing-popup{
-  width: 300px;
-   height: 200px; border: 1px solid #fff;
-   display: flex;
-   justify-content: center;
-   top: 40%;
-   left: 22.1%;
-color: #000;
-background-color: #fff;
-box-shadow: #4f7179 2px 4px 4px 4px;
-position: fixed;
-font-family: 'Krona One', sans-serif;
-
+  width: 50vw;
+  height: 40vh;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  top: 20%;
+  left: 25%;
+  color: #FFF;
+  background-color: #1A3944;
+  box-shadow: #4f7179 2px 4px 4px 4px;
+  position: fixed;
+  font-family: 'Krona One', sans-serif;
  }
+
  .losing-popup-content{
- display: flex;
- flex-direction: column;
-row-gap: 30px;
- align-items: center;
-
-
-
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  align-items: center;
+  justify-content: center;
  }
+
  .losing-popup-button{
   background-color: #0F8898;
   color: #fff;
-width: 180px;
-height: 48px;
-font-family: 'Krona One', sans-serif;
-border: none;
-border-radius: 4px;
+  width: 180px;
+  height: 48px;
+  font-family: 'Krona One', sans-serif;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
  }
+
  .losing-popup-content #close-popup{
-
-border: none;
-background-color: transparent;
-
-
-position: relative;
-
-left: 7.6rem;
-top:0.6rem;
-border: transparent;
-background-color: transparent;
-font-size: x-large;
-cursor: pointer;
+  color: white;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  left: 110%;
+  top: 25%;
+  border: transparent;
+  background-color: transparent;
+  font-size: x-large;
+  cursor: pointer;
  }
 
+ .winning-popup{
+  width: 50vw;
+  height: 40vh;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  top: 20%;
+  left: 25%;
+  color: #FFF;
+  background-color: #1A3944;
+  box-shadow: #4f7179 2px 4px 4px 4px;
+  position: fixed;
+  font-family: 'Krona One', sans-serif;
+}
+
+.winning-popup-content{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.winning-popup-button{
+  background-color: #0F8898;
+  color: #fff;
+  width: 180px;
+  height: 48px;
+  font-family: 'Krona One', sans-serif;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.winning-popup-content #close-winning-popup{
+  border: none;
+  background-color: transparent;
+  position: relative;
+  left: 7.6rem;
+  top:0.6rem;
+  border: transparent;
+  background-color: transparent;
+  font-size: x-large;
+  cursor: pointer;
+  color: #FFF;
+}
+
+#dropdownContent {
+  position: absolute;
+  width: 430px;
+  height: 250px;
+  background-color: #17626C;
+  padding: 30px;
+  border-radius: 6px;
+  margin-top: 10px;
+  line-height: 1.3;
+  box-shadow: 3px 3px 10px #00E0FF;
+  display: none;
+}
+
+.game-rules {
+  margin-top: 10px;
+  font-size: 0.9rem !important;
+}
 
  /* Responsive navbar, section, spelsida*/
 @media (min-width:375px) and (max-width:1000px){
-
   body{
     margin: 0;
     padding: 0;
     overflow-y: scroll;
     overflow-x: hidden;
     width:100%;
-
   }
   .logonav img{
     height: 55px;
@@ -555,26 +617,25 @@ cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
   }
   .navigation-links {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-margin-top: 50px;
-row-gap: 10px;
-
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    row-gap: 10px;
   }
+
   .contact-link{
     visibility: hidden;
-
   }
+
   .navbar .navigation-links li {
     margin: 0 ;
     display: flex;
   }
+
 .main-content{
   font-size: calc(10px + 2vmin);
   display: flex;
@@ -585,13 +646,13 @@ row-gap: 10px;
 
   .hero-text{
     display: flex;
-   flex-direction: column;
-   text-align: center;
-   font-size:smaller;
-   row-gap: 60px;
-   margin-top: 25%;
-
+    flex-direction: column;
+    text-align: center;
+    font-size:smaller;
+    row-gap: 60px;
+    margin-top: 25%;
   }
+
   .board-wrapper{
     display: flex;
     flex-direction: column;
@@ -640,65 +701,4 @@ row-gap: 10px;
     display: flex;
    justify-content: center;
    }
-}
-
-#dropdownContent {
-    position: absolute;
-    width: 430px;
-    height: 250px;
-    background-color: #17626C;
-    padding: 30px;
-    border-radius: 6px;
-    margin-top: 10px;
-    line-height: 1.3;
-    box-shadow: 3px 3px 10px #00E0FF;
-    display: none;
-}
-
-.game-rules {
-    margin-top: 10px;
-    font-size: 0.9rem !important;
-}
-
-.winning-popup{
-    width: 300px;
-    height: 200px; border: 1px solid #fff;
-    display: flex;
-    justify-content: center;
-    top: 40%;
-    left: 22.1%;
-    color: #000;
-    background-color: #fff;
-    box-shadow: #4f7179 2px 4px 4px 4px;
-    position: fixed;
-    font-family: 'Krona One', sans-serif;
-}
-
-.winning-popup-content{
-    display: flex;
-    flex-direction: column;
-    row-gap: 30px;
-    align-items: center;
-}
-
-.winning-popup-button{
-    background-color: #0F8898;
-    color: #fff;
-    width: 180px;
-    height: 48px;
-    font-family: 'Krona One', sans-serif;
-    border: none;
-    border-radius: 4px;
-}
-
-.winning-popup-content #close-winning-popup{
-    border: none;
-    background-color: transparent;
-    position: relative;
-    left: 7.6rem;
-    top:0.6rem;
-    border: transparent;
-    background-color: transparent;
-    font-size: x-large;
-    cursor: pointer;
 }

@@ -33,7 +33,7 @@ function SpelSida() {
       <div className='board-con' >
         <div className='board-top'>
           <div>
-            <button onClick={handleReset} >Omstart</button>
+            <button onClick={handleReset}>Omstart</button>
           </div>
           <div className='game-info'>
             <p className='black-circle'></p>
@@ -41,7 +41,7 @@ function SpelSida() {
             <p className='white-circle'></p>
           </div>
         </div>
-
+        {/* Byt ut Board mot <ListGames /> */}
         <Board />
         <div className='board-bottom'> <BsArrowLeft className='icons' onClick={goBack}/>
           <div className='board-timer'>

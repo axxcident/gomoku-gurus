@@ -1,7 +1,7 @@
 import React from "react";
-import Playbutton from "../components/PlayButton"
+import Playbutton from "./PlayButton"
 
-const Section = () => {
+const HomeSection = () => {
 return (
     <div className="main-content">
       <div className="hero-text">
@@ -12,4 +12,4 @@ return (
     </div>
 )}
 
-export default Section;
+export default HomeSection;

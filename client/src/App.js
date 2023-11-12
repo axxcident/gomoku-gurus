@@ -2,21 +2,20 @@ import React, { useState } from 'react'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import SpelSida from './pages/SpelSida.jsx';
-import Contact from './pages/Contact.jsx'
 import './App.css';
 import Navbar from './components/Navbar'
-import Modal from './components/LogInModal'
+import LogInModal from './components/LogInModal'
 import Footer from './components/footer.jsx'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const openModal = () => {
-        setIsModalOpen(true)
-    }
-    const closeModal = () => {
-        setIsModalOpen(false)
-    }
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const openModal = () => {
+      setIsModalOpen(true)
+  }
+  const closeModal = () => {
+      setIsModalOpen(false)
+  }
 
   return (
     <>
@@ -25,9 +24,8 @@ function App() {
         <Route path='/' element={ <Home /> } />
         <Route path='/about' element={ <About /> } />
         <Route path='/spelSida/:boardId' element={<SpelSida/>} />
-        <Route path='/contact' element={ <Contact /> } />
       </Routes>
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+      <LogInModal isOpen={isModalOpen} closeModal={closeModal} />
       <Footer />
     </>
     )
