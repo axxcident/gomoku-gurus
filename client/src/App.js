@@ -4,7 +4,7 @@ import About from './pages/About.jsx'
 import SpelSida from './pages/SpelSida.jsx';
 import './App.css';
 import Navbar from './components/Navbar'
-import Modal from './components/LogInModal'
+import LogInModal from './components/LogInModal'
 import Footer from './components/footer.jsx'
 import { Route, Routes } from 'react-router-dom'
 
@@ -25,7 +25,7 @@ function App() {
         <Route path='/about' element={ <About /> } />
         <Route path='/spelSida/:boardId' element={<SpelSida/>} />
       </Routes>
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+      <LogInModal isOpen={isModalOpen} closeModal={closeModal} />
       <Footer />
     </>
     )

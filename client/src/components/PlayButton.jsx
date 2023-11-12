@@ -7,7 +7,7 @@ function PlayButton() {
   const navigate = useNavigate();
   const [boardId, setBoardId] = useState(null);
   const playerNamelocal = localStorage.getItem('playerName');
-  const [playerName, setplayerName] = useState(null);
+  const [playerName, setPlayerName] = useState(null);
 
   const createGame = async () => {
     try {
@@ -22,7 +22,7 @@ function PlayButton() {
   const createProfile = async () => {
     const findProfile = localStorage.getItem('playerName');
     if (findProfile) {
-      setplayerName(findProfile);
+      setPlayerName(findProfile);
     } else {
       const profile = prompt('Ange ditt namn/alias');
       if (profile) {
@@ -33,7 +33,7 @@ function PlayButton() {
         };
       // Spara i localStorage
       localStorage.setItem('playerName', JSON.stringify(playerName));
-      setplayerName(profile);
+      setPlayerName(profile);
       }
     }
   }
