@@ -45,9 +45,6 @@ const Navbar = ({ openModal }) => {
             <Link to="/about">Om spelet</Link>
           </li>
           <li>
-            <Link to="/contact">Kontakta oss</Link>
-          </li>
-          <li>
         <button onClick={openModal}>Logga in</button>
           </li>
         </ul>
